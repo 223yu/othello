@@ -123,14 +123,19 @@ $('.square').on('click', function(){
   // 相手のターンに変更
   changeTurn();
 
+  // 盤面を数える
+  const blackStoneNum = $.grep(stoneStateList, function(state){
+    return (state == 1);
+  }).length;
+  const whiteStoneNum = $.grep(stoneStateList, function(state){
+    return (state == 2);
+  }).length;
+
+  $('#black-count').text(blackStoneNum);
+  $('#white-count').text(whiteStoneNum);
+
   // 盤面がいっぱいの場合、集計してゲームを終了
-  if ($.grep(stoneStateList, function(state){
-    return (state == 0)
-  }).length == 0){
-    const blackStoneNum = $.grep(stoneStateList, function(state){
-      return (state == 1);
-    }).length;
-    const whiteStoneNum = 64 - blackStoneNum;
+  if (blackStoneNum + whiteStoneNum == 64){
 
     let winnerText = '';
     if (blackStoneNum > whiteStoneNum){
@@ -141,7 +146,8 @@ $('.square').on('click', function(){
       winnerText = '引き分けです';
     }
 
-    alert(`ゲーム終了です。白${whiteStoneNum}、黒${blackStoneNum}で、${winnerText}`);
+    // alert(`ゲーム終了です。白${whiteStoneNum}、黒${blackStoneNum}で、${winnerText}`);
+    setTimeout(function(){alert(`ゲーム終了です。白${whiteStoneNum}、黒${blackStoneNum}で、${winnerText}`)}, 1);
   }
 });
 

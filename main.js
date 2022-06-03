@@ -146,7 +146,6 @@ $('.square').on('click', function(){
       winnerText = '引き分けです';
     }
 
-    // alert(`ゲーム終了です。白${whiteStoneNum}、黒${blackStoneNum}で、${winnerText}`);
     setTimeout(function(){alert(`ゲーム終了です。白${whiteStoneNum}、黒${blackStoneNum}で、${winnerText}`)}, 1);
   }
 });

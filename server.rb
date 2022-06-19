@@ -6,5 +6,11 @@ srv = WEBrick::HTTPServer.new({
 })
 
 srv.mount('/', WEBrick::HTTPServlet::FileHandler, 'index.html')
+
+srv.mount_proc '/test' do |req, res|
+  test = req.request_line
+  puts test
+end
+
 trap("INT"){ srv.shutdown }
 srv.start

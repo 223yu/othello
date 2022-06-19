@@ -22,11 +22,27 @@
   <!--  パスボタン -->
   <button id ="pass">パスする</button>
 
+  <button id="test_button">ajax</button>
+
   <form action="/" method="POST">
     <button>test</button>
   </form>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- rubyサーバにリクエストを送り、レスポンスが返ってくることを確認 -->
+  <script>
+    $(document).on('click', '#test_button', function(){
+      $.ajax({
+        url: '/test',
+        type: 'POST',
+        data: { body: 'リクエスト'},
+      }).done(function(data){
+        console.log(data);
+      })
+    });
+  </script>
+
   <script>
     const stage = $('#stage');
     const squareTemplate = $('#square-template');
